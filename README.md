@@ -1,4 +1,4 @@
-# block_poc
+# Block Lists
 
 Things we want blocked.
 
@@ -13,6 +13,24 @@ Things we want blocked.
 - [Proxy Bypass](proxy-bypass): Apps, services, and protocols blocked.
 - [Remote Access](remote-access): Apps, services, and protocols blocked.
 - [Web Content Filters](web-content-filters): Categories of websites.
+
+## GitHub Pages
+
+This repository is set up to display the block lists using GitHub Pages. The site can be accessed at [https://your-username.github.io/block_poc/](https://your-username.github.io/block_poc/).
+
+### Setup GitHub Pages
+
+1. Go to the repository on GitHub
+2. Navigate to Settings > Pages
+3. Under "Source", select "main" branch and "/docs" folder
+4. Click Save
+
+The site will be automatically built and deployed from the docs folder in the main branch. Detailed setup instructions can be found in [docs/github-pages-setup.md](docs/github-pages-setup.md).
+
+## Repository Structure
+
+- `/docs/` - Contains all GitHub Pages files for the web interface
+- Each category folder contains a `list.txt` file with the actual blocked items
 
 ## Questions
 

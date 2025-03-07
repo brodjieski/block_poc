@@ -1,0 +1,11 @@
+title: Block Lists
+description: Categorized blocklists for security and compliance purposes
+theme: jekyll-theme-cayman
+baseurl: "/block_poc"
+url: ""
+markdown: kramdown
+exclude:
+  - .git
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
