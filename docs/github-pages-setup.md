@@ -1,3 +1,8 @@
+---
+layout: default
+title: GitHub Pages Setup
+---
+
 # Setting Up GitHub Pages for Block POC
 
 This document provides instructions for setting up GitHub Pages to display the Block POC repository content.
