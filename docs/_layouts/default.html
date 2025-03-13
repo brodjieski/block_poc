@@ -39,9 +39,40 @@
             </ul>
           </li>
         </ul>
+        <!-- Global Search -->
+        <form class="d-flex ms-3">
+          <input class="form-control me-2" type="search" placeholder="Search all lists..." id="globalSearch">
+          <button class="btn btn-outline-light" type="button" id="searchButton">Search</button>
+        </form>
       </div>
     </div>
   </nav>
+
+  <!-- Global Search Results -->
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="searchResults" class="card d-none">
+          <div class="card-header bg-primary text-white">
+            Search Results (<span id="resultCount">0</span>)
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody">
+                <!-- Results will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container mt-4 mb-5">
     <div class="row">
