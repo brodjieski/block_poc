@@ -1,44 +1,7 @@
-// Fuzzy search implementation
-class FuzzySearch {
-  constructor(items, options = {}) {
+// Simple search implementation
+class SimpleSearch {
+  constructor(items) {
     this.items = items;
-    this.keys = options.keys || null;
-    this.threshold = options.threshold || 0.6;
-  }
-
-  // Calculate Levenshtein distance between two strings
-  levenshteinDistance(str1, str2) {
-    const track = Array(str2.length + 1).fill(null).map(() => 
-      Array(str1.length + 1).fill(null));
-    
-    for (let i = 0; i <= str1.length; i += 1) {
-      track[0][i] = i;
-    }
-    
-    for (let j = 0; j <= str2.length; j += 1) {
-      track[j][0] = j;
-    }
-    
-    for (let j = 1; j <= str2.length; j += 1) {
-      for (let i = 1; i <= str1.length; i += 1) {
-        const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
-        track[j][i] = Math.min(
-          track[j][i - 1] + 1, // deletion
-          track[j - 1][i] + 1, // insertion
-          track[j - 1][i - 1] + indicator, // substitution
-        );
-      }
-    }
-    
-    return track[str2.length][str1.length];
-  }
-
-  // Calculate similarity between two strings (0 to 1)
-  similarity(str1, str2) {
-    if (!str1.length && !str2.length) return 1;
-    const maxLength = Math.max(str1.length, str2.length);
-    const distance = this.levenshteinDistance(str1, str2);
-    return 1 - distance / maxLength;
   }
 
   // Search for a query among the items
@@ -52,20 +15,19 @@ class FuzzySearch {
     for (const [category, items] of Object.entries(this.items)) {
       for (const item of items) {
         const itemString = item.toLowerCase();
-        const score = this.similarity(query, itemString);
         
-        if (score >= this.threshold) {
+        // Simple substring match
+        if (itemString.includes(query)) {
           results.push({
             item: item,
-            category: category,
-            score: score
+            category: category
           });
         }
       }
     }
     
-    // Sort by score in descending order
-    return results.sort((a, b) => b.score - a.score);
+    // Sort alphabetically
+    return results.sort((a, b) => a.item.localeCompare(b.item));
   }
 }
 
@@ -77,12 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   
-  const fuzzySearch = new FuzzySearch(searchData);
+  const simpleSearch = new SimpleSearch(searchData);
   const searchInput = document.getElementById('globalSearch');
   const searchButton = document.getElementById('searchButton');
   const searchResults = document.getElementById('searchResults');
   const resultsBody = document.getElementById('resultsBody');
   const resultCount = document.getElementById('resultCount');
+  const closeSearchResults = document.getElementById('closeSearchResults');
   
   // Function to perform search
   function performSearch() {
@@ -92,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    const results = fuzzySearch.search(query);
+    const results = simpleSearch.search(query);
     
     // Display results
     resultsBody.innerHTML = '';
@@ -122,16 +85,40 @@ document.addEventListener('DOMContentLoaded', function() {
       resultsBody.appendChild(row);
     }
     
+    // Show results without moving the page
     searchResults.classList.remove('d-none');
+    
+    // Prevent form submission which would cause page reload
+    return false;
+  }
+  
+  // Close search results
+  if (closeSearchResults) {
+    closeSearchResults.addEventListener('click', function() {
+      searchResults.classList.add('d-none');
+    });
   }
   
   // Search on button click
-  searchButton.addEventListener('click', performSearch);
+  searchButton.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent form submission
+    performSearch();
+  });
   
   // Search on Enter key
   searchInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission
       performSearch();
+    }
+  });
+  
+  // Close search results when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!searchResults.contains(event.target) && 
+        event.target !== searchInput && 
+        event.target !== searchButton) {
+      searchResults.classList.add('d-none');
     }
   });
 });

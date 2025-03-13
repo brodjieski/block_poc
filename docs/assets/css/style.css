@@ -59,15 +59,25 @@ th:hover {
 /* Search results */
 #searchResults {
   background-color: white;
-  padding: 15px;
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1050;
 }
 
 #searchResults h3 {
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 15px;
+}
+
+#closeSearchResults {
+  opacity: 0.8;
+}
+
+#closeSearchResults:hover {
+  opacity: 1;
 }
 
 #resultsTable {
