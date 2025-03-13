@@ -61,6 +61,14 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
+  <!-- Include search data and fuzzy search if available -->
+  <script>
+    // Define site baseurl for JavaScript
+    const site = { baseurl: '{{ site.baseurl }}' };
+  </script>
+  <script src="{{ site.baseurl }}/assets/js/search-data.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/fuzzy-search.js"></script>
+  
   <!-- Add sorting and filtering for tables when present -->
   <script>
   if (document.getElementById('searchInput') && document.getElementById('dataTable')) {

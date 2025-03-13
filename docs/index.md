@@ -7,6 +7,32 @@ title: Block Lists
 
 This site provides categorized blocklists for security and compliance purposes. Each category contains entities that should be blocked according to organizational policies.
 
+<div class="search-container mb-4">
+  <div class="input-group">
+    <input type="text" id="globalSearch" class="form-control form-control-lg" placeholder="Search all block lists...">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="searchButton">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+  </div>
+  <div id="searchResults" class="mt-3 d-none">
+    <h3>Search Results (<span id="resultCount">0</span>)</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover" id="resultsTable">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 ## Block Categories
 
 <div class="row">

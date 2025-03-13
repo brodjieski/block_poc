@@ -18,7 +18,7 @@ Various conferencing services that may not be approved.
       </tr>
     </thead>
     <tbody>
-      <tr><td>Conferencing Service 1</td></tr>
+      <tr><td>Conferencing Serivce 1</td></tr>
     </tbody>
   </table>
 </div>
